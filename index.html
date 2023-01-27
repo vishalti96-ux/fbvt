@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VT Fb</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <style type="text/css">
+      header{
+        width: 50%;
+        margin: auto;
+        margin-top: 70px;
+
+      }
+      body{
+        background-image: url('images/fb.jpg');
+        background-size: cover;
+        width: 100%;
+        height: 100vh;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="https://lh3.googleusercontent.com/ogw/AAEL6sgcgBm58FItzFI4FI6qgPu4wdbpC13k7gjKmS8e=s32-c-mo" alt="Bootstrap" width="30" height="24">
+    </a>
+    <form class="d-flex" role="search">
+      <span class="form-control me-2" aria-label="Search" id="sd">Show Time</span>
+    </form>
+  </div>
+</nav>
+
+<header>
+<div class="card" id = "log">
+  <div class="card-header" >
+    Facebook LogIn & SignUp
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+  <label for="Input1" class="form-label">user name</label>
+  <input type="text" class="form-control inp1" id="Input1" placeholder="Choose your User name">
+</div>
+<div class="mb-3">
+  <label for="Input2" class="form-label">Password</label>
+  <input type="password" class="form-control inp2" id="Input2" placeholder="Create your password">
+</div>
+
+    <a href="#" class="btn btn-primary" onclick="signup()">Sign Up</a>
+    <a href="#" class="btn btn-primary" onclick="login(document.getElementById('Input1').value,document.getElementById('Input2').value)">Log In</a>
+  </div>
+</div>
+<div class="card" id = "logout" style="display:none;">
+  <div class="card-header">
+    Welcome To Facebook 
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+  <h3 >User Name: </h3><br>
+  <p id= "showuser"></p>
+  </div>
+
+  <div class="mb-3">
+  <h3 >Password: </h3><br>
+  <p id= "showpass"></p>
+  </div><br>
+
+    <a href="#" class="btn btn-primary" onclick="logout()">Log Out</a>
+    
+  </div>
+</div>
+</header>
+    <script type="text/javascript">
+      const interval = setInterval(showDate,1000);
+      const database =[];
+      function showDate(){
+      var d = new Date();
+      document.getElementById('sd').innerHTML = d.toLocaleString();
+    }
+    function signup(){
+    var inp1 = document.getElementById('Input1').value;
+    var inp2 = document.getElementById('Input2').value;
+    var obj = {name:"",pass:""};
+    obj.name = inp1;
+    obj.pass = inp2;
+    // console.log(obj);
+    
+    database.push(obj);
+    // console.log(database);
+    
+    // document.getElementById("Input1").innerHTML = "";
+    // document.getElementById("Input2").innerHTML = "";
+
+   document.querySelector(".inp1").value = "";
+   document.querySelector(".inp2").value = "";
+   alert("You Have Successfully Signed Up!")
+
+  }
+   function login(user,pass){
+      if (user == database[0].name && pass == database[0].pass){
+        alert("you are logged in");
+        document.getElementById("log").setAttribute("style","display:none;");
+        document.getElementById("logout").setAttribute("style","display:block;");
+
+        document.getElementById("showuser").innerHTML= database[0].name;
+        document.getElementById("showpass").innerHTML= database[0].pass;
+              } else{
+                alert("user name or password is incorrect try again.");
+                document.querySelector(".inp1").value = "";
+   document.querySelector(".inp2").value = "";
+   
+              }
+    }
+   function logout(){
+        document.getElementById("log").setAttribute("style","display:block;");
+        document.getElementById("logout").setAttribute("style","display:none;");
+        window.open("index.html");
+    
+   }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
